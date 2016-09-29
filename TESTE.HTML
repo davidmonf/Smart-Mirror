@@ -1,0 +1,156 @@
+<html>
+<head>
+<meta http-equiv="refresh" content="300; URL=file:///E:/Desktop/Sandro/TESTE.HTML">
+<link rel="stylesheet" type="text/css" href="FeedEk.css" />
+<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="FeedEk.js"></script>
+<script type="text/javascript" src="gulpfile.js"></script>
+<script type="text/javascript" src="jquery.simpleWeather.js"></script>
+
+<script>
+function startTime() {
+    var today = new Date();
+    var h = today.getHours();
+    var m = today.getMinutes();
+    var s = today.getSeconds();
+	var d = today.getDate();
+	var mesfull = today.getMonth();
+	var dsem = today.getDay();
+	var ano = today.getFullYear();
+	switch (dsem){
+		    case 0:
+        dia = "Domingo";
+        break;
+    case 1:
+        dia = "Segunda-feira";
+        break;
+    case 2:
+        dia = "Terça-feira";
+        break;
+    case 3:
+        dia = "Quarta-feira";
+        break;
+    case 4:
+        dia = "Quinta-feira";
+        break;
+    case 5:
+        dia = "Sexta-feira";
+        break;
+    case 6:
+        dia = "Sábado";
+	}
+	
+		switch (mesfull){
+		    case 0:
+        mes = "Janeiro";
+        break;
+    case 1:
+        mes = "Fevereiro";
+        break;
+    case 2:
+        mes = "Março";
+        break;
+    case 3:
+        mes = "Abril";
+        break;
+    case 4:
+        mes = "Maio";
+        break;
+    case 5:
+        mes = "Junho";
+        break;
+    case 6:
+        mes = "Julho";
+		break;
+	case 7:
+        mes = "Agosto";
+		break;
+	case 8:
+        mes = "Setembro";
+		break;
+	case 9:
+        mes = "Outubro";
+		break;
+	case 10:
+        mes = "Novembro";
+		break;
+	case 11:
+        mes = "Dezembro";
+		break;	
+	}
+    m = checkTime(m);
+    s = checkTime(s);
+    document.getElementById('txt').innerHTML =
+	//h ":" + m + ":" + s;
+    dia + "<br/>" + d + "/" + (mesfull+1) + "/" + ano + "<br/>" + h + ":" + m + ":" + s;
+    var t = setTimeout(startTime, 500);
+}
+function checkTime(i) {
+    if (i < 10) {i = "0" + i};  // adiciona 0 na frente de números menores do que 10
+    return i;
+}
+</script>
+</head>
+
+<body onload="startTime()" bgcolor="000000">
+<div id="txt" style="color:#ffffff; font-size:72px;" class="esquerda"></div>
+
+<div id="weather" class="direita"></div>
+
+<br/><br/><br/><br/>
+
+<div id="divRss" class="baixo"></div>
+<script type="text/javascript">
+// v3.1.0
+//Docs at http://simpleweatherjs.com
+$(document).ready(function() {
+  $.simpleWeather({
+    location: 'São Paulo, SP',
+    woeid: '',
+    unit: 'c',
+	success: function(weather) {
+      html = '<h2><i class="icon-'+weather.code+'"></i> '+weather.temp+'&deg;'+weather.units.temp+'</h2>';
+      html += '<ul><li>'+weather.city+', '+weather.region+'</li>';
+      //html += '<li class="currently">'+weather.currently+'</li>';
+      //html += '<li>'+weather.alt.temp+'&deg;C</li></ul>';
+      
+      for(var i=1;i<5;i++) {
+        html += '<p>'+'<i class="icon-'+weather.code[i]+'"></i> '+weather.forecast[i].day+': '+weather.forecast[i].high+'</p>';
+      }
+  
+      $("#weather").html(html);
+    },
+    error: function(error) {
+      $("#weather").html('<p>'+error+'</p>');
+    }
+  });
+});
+
+    //success: function(weather) {
+     // html = '<h2><i class="icon-'+weather.code+'"></i> '+weather.temp+'&deg;'+weather.units.temp+'</h2>';
+      //html += '<ul><li>'+weather.city+'</li>';
+      //html += '<li class="currently">'+weather.currently+'</li>';
+     // html += '<li>'+weather.wind.direction+' '+weather.wind.speed+' '+weather.units.speed+'</li></ul>';
+  
+   //   $("#weather").html(html);
+   // },
+  //  error: function(error) {
+  //    $("#weather").html('<p>'+error+'</p>');
+  //  }
+  //});
+//});
+
+</script>
+<script type="text/javascript" >
+document.cookie = "news=0";
+$('#divRss').FeedEk({
+  //FeedUrl:'http://g1.globo.com/dynamo/sao-paulo/rss2.xml',
+  //FeedUrl:'http://g1.globo.com/dynamo/brasil/rss2.xml',
+  //FeedUrl:'http://rss.uol.com.br/feed/noticias.xml',
+  FeedUrl:'http://globoesporte.globo.com/Esportes/Rss/0,,AS0-9827,00.xml',
+  //FeedUrl:'http://globoesporte.globo.com/Esportes/Rss/0,,AS0-9830,00.xml',
+  MaxCount: 5
+});
+</script>
+</body>
+</html>
