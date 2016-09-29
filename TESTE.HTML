@@ -1,6 +1,6 @@
 <html>
 <head>
-<meta http-equiv="refresh" content="300; URL=file:///D:/xampp/htdocs/smart-mirror/TESTE.HTML">
+<meta http-equiv="refresh" content="300; URL=file://///david-pc/htdocs/smart-mirror/TESTE.HTML">
 <link rel="stylesheet" type="text/css" href="FeedEk.css" />
 <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="FeedEk.js"></script>
@@ -18,14 +18,14 @@ function startTime() {
 	var dsem = today.getDay();
 	var ano = today.getFullYear();
 	switch (dsem){
-		    case 0:
+	case 0:
         dia = "Domingo";
         break;
     case 1:
         dia = "Segunda-feira";
         break;
     case 2:
-        dia = "Terça-feira";
+        dia = "Ter&ccedila-feira";
         break;
     case 3:
         dia = "Quarta-feira";
@@ -37,18 +37,18 @@ function startTime() {
         dia = "Sexta-feira";
         break;
     case 6:
-        dia = "Sábado";
+        dia = "S&aatildebado";
 	}
 	
 		switch (mesfull){
-		    case 0:
+	case 0:
         mes = "Janeiro";
         break;
     case 1:
         mes = "Fevereiro";
         break;
     case 2:
-        mes = "Março";
+        mes = "Mar&ccedilo";
         break;
     case 3:
         mes = "Abril";
@@ -80,13 +80,13 @@ function startTime() {
 	}
     m = checkTime(m);
     s = checkTime(s);
+	h = checkTime(h);
     document.getElementById('txt').innerHTML =
-	//h ":" + m + ":" + s;
-    dia + "<br/>" + d + "/" + (mesfull+1) + "/" + ano + "<br/>" + h + ":" + m + ":" + s;
+    "<h2>" + h + ":" + m + ":" + s + "</h2><h3>" + dia + "<br/>" + d + "/" + (mesfull+1) + "/" + ano + "</h3>";
     var t = setTimeout(startTime, 500);
 }
 function checkTime(i) {
-    if (i < 10) {i = "0" + i};  // adiciona 0 na frente de números menores do que 10
+    if (i < 10) {i = "0" + i};
     return i;
 }
 </script>
@@ -101,8 +101,6 @@ function checkTime(i) {
 
 <div id="divRss" class="baixo"></div>
 <script type="text/javascript">
-// v3.1.0
-//Docs at http://simpleweatherjs.com
 $(document).ready(function() {
   $.simpleWeather({
     location: 'São Paulo, SP',
@@ -110,12 +108,33 @@ $(document).ready(function() {
     unit: 'c',
 	success: function(weather) {
       html = '<h2><i class="icon-'+weather.code+'"></i> '+weather.temp+'&deg;'+weather.units.temp+'</h2>';
-      html += '<ul><li>'+weather.city+', '+weather.region+'</li>';
-      //html += '<li class="currently">'+weather.currently+'</li>';
-      //html += '<li>'+weather.alt.temp+'&deg;C</li></ul>';
-      
+      html += '<h3>'+weather.city+'</h3>';
       for(var i=1;i<5;i++) {
-        html += '<p>'+'<i class="icon-'+weather.code[i]+'"></i> '+weather.forecast[i].day+': '+weather.forecast[i].high+'</p>';
+		weekday = weather.forecast[i].day;
+		switch(weekday){
+		case "Fri":
+			weekday_br="Sexta-feira";
+			break;
+		case "Sat":
+			weekday_br="S&aacutebado";
+			break;
+		case "Sun":
+			weekday_br="Domingo";
+			break;
+		case "Mon":
+			weekday_br="Segunda-feira";
+			break;
+		case "Tue":
+			weekday_br="Ter&ccedila-feira";
+			break;
+		case "Wed":
+			weekday_br="Quarta-feira";
+			break;
+		case "Thu":
+			weekday_br="Quinta-feira";
+			break;
+		}
+		html += '<h5>'+weekday_br+': &uarr; '+weather.forecast[i].high+'&deg; &darr; '+weather.forecast[i].low+'&deg;'+'</h5>';
       }
   
       $("#weather").html(html);
@@ -125,20 +144,6 @@ $(document).ready(function() {
     }
   });
 });
-
-    //success: function(weather) {
-     // html = '<h2><i class="icon-'+weather.code+'"></i> '+weather.temp+'&deg;'+weather.units.temp+'</h2>';
-      //html += '<ul><li>'+weather.city+'</li>';
-      //html += '<li class="currently">'+weather.currently+'</li>';
-     // html += '<li>'+weather.wind.direction+' '+weather.wind.speed+' '+weather.units.speed+'</li></ul>';
-  
-   //   $("#weather").html(html);
-   // },
-  //  error: function(error) {
-  //    $("#weather").html('<p>'+error+'</p>');
-  //  }
-  //});
-//});
 
 </script>
 <script type="text/javascript" >

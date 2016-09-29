@@ -112,7 +112,7 @@
 
             options.success(weather);
           } else {
-            options.error('Houve um problema ao trazer as informações sobre o clima. Aguarde.');
+            options.error('Houve um problema ao trazer as informa&ccedil;&otilde;es sobre o clima. Aguarde.');
           }
         }
       );

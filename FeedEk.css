@@ -15,8 +15,7 @@
 #weather {
   width: 500px;
   margin: 0px auto;
-  text-align: center;
-  text-transform: uppercase;
+  text-align: right;
 }
 
 i {
@@ -27,6 +26,7 @@ i {
   font-style: normal;
   line-height: 1.0;
   text-transform: none;
+  text-align: right;
 }
 
 .icon-0:before { content: ":"; }
@@ -83,7 +83,34 @@ i {
   color: #fff;
   font-size: 100px;
   font-weight: 300;
-  text-align: center;
+  text-align: right;
+  text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+#weather h3 {
+  margin: 0 0 8px;
+  color: #fff;
+  font-size: 50px;
+  font-weight: 300;
+  text-align: right;
+  text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+#txt h2 {
+  margin: 0 0 8px;
+  color: #fff;
+  font-size: 100px;
+  font-weight: 300;
+  text-align: left;
+  text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+#txt h3 {
+  margin: 0 0 8px;
+  color: #fff;
+  font-size: 50px;
+  font-weight: 300;
+  text-align: left;
   text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.15);
 }
 
@@ -93,9 +120,8 @@ i {
 }
 
 #weather li {
-  background: #fff;
-  background: rgba(255,255,255,0.90);
   padding: 20px;
+  text-align: right;
   display: inline-block;
   border-radius: 5px;
 }
@@ -110,17 +136,23 @@ i {
 	top:0px;
 	float: right;
 	color:#ffffff;
+	padding-right: 20px;
 }
 
 .esquerda{
 	position:absolute;
 	left:0px;
-	top:0px;
+	top:20px;
 	float: left;
+	padding-left: 20px;
+	text-align: left;
 }
 
 .baixo{
 	position:absolute;
-	bottom:1px;
-	width:100%;
+	bottom:-120px;
+	width:80%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
 }
