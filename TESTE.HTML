@@ -1,6 +1,6 @@
 <html>
 <head>
-<meta http-equiv="refresh" content="300; URL=file://///david-pc/htdocs/smart-mirror/TESTE.HTML">
+<meta http-equiv="refresh" content="180; URL=file://///david-pc/htdocs/smart-mirror/TESTE.HTML">
 <link rel="stylesheet" type="text/css" href="FeedEk.css" />
 <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="FeedEk.js"></script>
@@ -25,7 +25,7 @@ function startTime() {
         dia = "Segunda-feira";
         break;
     case 2:
-        dia = "Ter&ccedila-feira";
+        dia = "Ter&ccedil;a-feira";
         break;
     case 3:
         dia = "Quarta-feira";
@@ -37,7 +37,7 @@ function startTime() {
         dia = "Sexta-feira";
         break;
     case 6:
-        dia = "S&aatildebado";
+        dia = "S&aacute;bado";
 	}
 	
 		switch (mesfull){
@@ -116,7 +116,7 @@ $(document).ready(function() {
 			weekday_br="Sexta-feira";
 			break;
 		case "Sat":
-			weekday_br="S&aacutebado";
+			weekday_br="S&aacute;bado";
 			break;
 		case "Sun":
 			weekday_br="Domingo";
@@ -125,7 +125,7 @@ $(document).ready(function() {
 			weekday_br="Segunda-feira";
 			break;
 		case "Tue":
-			weekday_br="Ter&ccedila-feira";
+			weekday_br="Ter&ccedil;a-feira";
 			break;
 		case "Wed":
 			weekday_br="Quarta-feira";
@@ -147,15 +147,43 @@ $(document).ready(function() {
 
 </script>
 <script type="text/javascript" >
-document.cookie = "news=0";
-$('#divRss').FeedEk({
-  //FeedUrl:'http://g1.globo.com/dynamo/sao-paulo/rss2.xml',
-  //FeedUrl:'http://g1.globo.com/dynamo/brasil/rss2.xml',
-  //FeedUrl:'http://rss.uol.com.br/feed/noticias.xml',
-  FeedUrl:'http://globoesporte.globo.com/Esportes/Rss/0,,AS0-9827,00.xml',
-  //FeedUrl:'http://globoesporte.globo.com/Esportes/Rss/0,,AS0-9830,00.xml',
-  MaxCount: 5
-});
+	if (document.cookie== "news=0")
+	{
+		document.cookie = "news=1";
+	
+	}
+	if (document.cookie == "news=1")
+	{
+		$('#divRss').FeedEk({
+		FeedUrl:'http://g1.globo.com/dynamo/sao-paulo/rss2.xml',		
+		MaxCount: 5
+		});
+		document.cookie = "news=2";
+	}
+	else if (document.cookie == "news=2")
+	{
+		$('#divRss').FeedEk({
+		FeedUrl:'http://g1.globo.com/dynamo/brasil/rss2.xml',		
+		MaxCount: 5
+		});
+		document.cookie = "news=3";
+	}
+	else if (document.cookie == "news=3")
+	{
+		$('#divRss').FeedEk({
+		FeedUrl:'http://rss.home.uol.com.br/index.xml',		
+		MaxCount: 5
+		});
+		document.cookie = "news=4";
+	}
+	else if (document.cookie == "news=4")
+	{
+		$('#divRss').FeedEk({
+		FeedUrl:'http://globoesporte.globo.com/Esportes/Rss/0,,AS0-9827,00.xml',	
+		MaxCount: 5
+		});
+		document.cookie = "news=1";
+	}
 </script>
 </body>
 </html>
